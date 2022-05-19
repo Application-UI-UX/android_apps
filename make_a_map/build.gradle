@@ -15,7 +15,7 @@
  */
 
 dependencies {
-  compile 'com.github.rosjava.android_remocons:common_tools:[0.3,0.4)'
+  compile 'com.github.Application-UI-UX.android_remocons:common_tools:[0.3,0.4)'
   compile 'org.ros.android_core:android_core_components:[0.4,0.5)'
   compile 'org.ros.rosjava_core:rosjava_geometry:[0.3,0.4)'
   compile 'org.ros.rosjava_messages:map_store:[0.3,0.4)'
@@ -25,17 +25,17 @@ dependencies {
 apply plugin: 'com.android.application'
 
 android {
-  compileSdkVersion 28
+  compileSdk 32
 
   defaultConfig {
-    minSdkVersion 16
-    targetSdkVersion 28
-    versionCode 3
-    versionName "1.0.1"
+    minSdk 21
+    targetSdk 32
+    versionCode 1
+    versionName "1.0"
   }
   productFlavors {
-    kinetic {
-      applicationId "com.github.rosjava.android_apps.make_a_map.kinetic"
+    noetic {
+      applicationId "com.github.Application-UI-UX.android_apps.make_a_map.noetic"
     }
   }
   lintOptions {

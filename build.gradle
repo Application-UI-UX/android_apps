@@ -13,39 +13,31 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.10.2'
+wrapper {
+    gradleVersion = '7.3.3'
+    distributionUrl = distributionUrl.replace("bin", "all")
 }
 
 buildscript {
-    apply from: "https://github.com/rosjava/android_core/raw/kinetic/buildscript.gradle"
+    apply from: "https://github.com/Application-UI-UX/android_core/raw/noetic/buildscript.gradle"
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        google()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.3.3'
+    }
 }
 
 apply plugin: 'catkin'
 
 allprojects {
-    group 'com.github.rosjava.android_apps'
+    group 'com.github.Application-UI-UX.android_apps'
     version = project.catkin.pkg.version
 }
 
 subprojects {
-    /*
-     * The android plugin configures a few things:
-     *
-     *  - local deployment repository : where it dumps the jars and packaged artifacts)
-     *  - local maven repositories    : where it finds your locally installed/built artifacts)
-     *  - external maven repositories : where it goes looking if it can't find dependencies locally
-     *  - android build tools version : which version we use across the board
-     *
-     * To modify, or add repos to the default external maven repositories list, pull request against this code:
-     *
-     *   https://github.com/rosjava/rosjava_bootstrap/blob/indigo/gradle_plugins/src/main/groovy/org/ros/gradle_plugins/RosPlugin.groovy#L31
-     *
-     * To modify the build tools version, pull request against this code:
-     *
-     *   https://github.com/rosjava/rosjava_bootstrap/blob/indigo/gradle_plugins/src/main/groovy/org/ros/gradle_plugins/RosAndroid.groovy#L14
-     */
     apply plugin: 'ros-android'
 
     afterEvaluate { project ->
@@ -58,4 +50,8 @@ subprojects {
             flavorDimensions 'default'
         }
     }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
