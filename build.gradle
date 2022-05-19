@@ -21,6 +21,8 @@ wrapper {
 buildscript {
     apply from: "https://github.com/Application-UI-UX/android_core/raw/noetic/buildscript.gradle"
     repositories {
+        mavenLocal()
+        mavenCentral()
         google()
     }
     dependencies {
@@ -48,4 +50,8 @@ subprojects {
             flavorDimensions 'default'
         }
     }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }

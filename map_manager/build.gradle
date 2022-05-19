@@ -14,7 +14,7 @@
  * the License.
  */
 dependencies {
-  compile 'com.github.rosjava.android_remocons:common_tools:[0.3,0.4)'
+  compile 'com.github.Application-UI-UX.android_remocons:common_tools:[0.3,0.4)'
   compile 'org.ros.android_core:android_core_components:[0.4,0.5)'
   compile 'org.ros.rosjava_messages:world_canvas_msgs:[0.2,0.3)'
 }
@@ -32,7 +32,7 @@ android {
   }
   productFlavors {
     kinetic {
-      applicationId "com.github.rosjava.android_apps.map_manager.kinetic"
+      applicationId "com.github.Application-UI-UX.android_apps.map_manager.kinetic"
     }
   }
   lintOptions {
