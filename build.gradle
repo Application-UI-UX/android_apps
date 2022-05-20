@@ -14,19 +14,19 @@
  * the License.
  */
 wrapper {
-    gradleVersion = '7.3.3'
+    gradleVersion = '7.2.0'
     distributionUrl = distributionUrl.replace("bin", "all")
 }
 
 buildscript {
-    apply from: "https://github.com/Application-UI-UX/android_core/raw/noetic/buildscript.gradle"
+    apply from: "https://github.com/Application-UI-UX/rosjava_bootstrap/raw/noetic/buildscript.gradle"
     repositories {
         mavenLocal()
         mavenCentral()
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.3'
+        classpath 'com.android.tools.build:gradle:7.2.0'
     }
 }
 
@@ -39,6 +39,7 @@ allprojects {
 
 subprojects {
     apply plugin: 'ros-android'
+//    apply plugin: 'com.android.application'
 
     afterEvaluate { project ->
         android {
