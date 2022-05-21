@@ -35,6 +35,18 @@ apply plugin: 'catkin'
 allprojects {
     group 'com.github.Application-UI-UX.android_apps'
     version = project.catkin.pkg.version
+    repositories {
+        maven {
+            allowInsecureProtocol = true
+            url 'https://repo1.maven.org/maven2'
+        }
+        maven {
+            url = "https://maven.pkg.github.com/Application-UI-UX"
+        }
+        mavenLocal()
+        mavenCentral()
+        google()
+    }
 }
 
 subprojects {
