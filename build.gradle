@@ -14,19 +14,19 @@
  * the License.
  */
 wrapper {
-    gradleVersion = '7.3.3'
+    gradleVersion = '7.2.0'
     distributionUrl = distributionUrl.replace("bin", "all")
 }
 
 buildscript {
-    apply from: "https://github.com/Application-UI-UX/android_core/raw/noetic/buildscript.gradle"
+    apply from: "https://github.com/Application-UI-UX/rosjava_bootstrap/raw/noetic/buildscript.gradle"
     repositories {
         mavenLocal()
         mavenCentral()
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.3.3'
+        classpath 'com.android.tools.build:gradle:7.2.0'
     }
 }
 
@@ -35,10 +35,23 @@ apply plugin: 'catkin'
 allprojects {
     group 'com.github.Application-UI-UX.android_apps'
     version = project.catkin.pkg.version
+    repositories {
+        maven {
+            allowInsecureProtocol = true
+            url 'https://repo1.maven.org/maven2'
+        }
+        maven {
+            url = "https://maven.pkg.github.com/Application-UI-UX"
+        }
+        mavenLocal()
+        mavenCentral()
+        google()
+    }
 }
 
 subprojects {
     apply plugin: 'ros-android'
+//    apply plugin: 'com.android.application'
 
     afterEvaluate { project ->
         android {
