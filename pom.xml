@@ -36,8 +36,8 @@
 
 
   <scm>
-    <connection>scm:git:git://github.com/Application-UI-UX/android_core.git</connection>
-    <developerConnection>scm:git:https://github.com/Application-UI-UX/android_core.git</developerConnection>
+    <connection>scm:git:git://github.com/Application-UI-UX/android_apps.git</connection>
+    <developerConnection>scm:git:https://github.com/Application-UI-UX/android_apps.git</developerConnection>
     <url>https://github.com/Application-UI-UX/android_apps</url>
     <tag>android_apps</tag>
   </scm>
