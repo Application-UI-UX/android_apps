@@ -50,7 +50,6 @@ allprojects {
 }
 
 subprojects {
-    apply plugin: 'ros-android'
 //    apply plugin: 'com.android.application'
 
     afterEvaluate { project ->
