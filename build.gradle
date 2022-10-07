@@ -14,57 +14,66 @@
  * the License.
  */
 wrapper {
-    gradleVersion = '7.2.0'
+    gradleVersion = "7.2.0"
     distributionUrl = distributionUrl.replace("bin", "all")
 }
 
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+
 buildscript {
-    apply from: "https://github.com/Application-UI-UX/rosjava_bootstrap/raw/noetic/buildscript.gradle"
     repositories {
-        mavenLocal()
         mavenCentral()
+        maven { url "https://jitpack.io" }
+        maven {
+            url 'https://repo1.maven.org/maven2'
+            url = "https://repository.springsource.com/maven/bundles/release"
+            url = "https://repository.springsource.com/maven/bundles/external"
+        }
+        mavenLocal()
+        maven { url = "https://repo.maven.apache.org/maven2" }
+        maven { url = "https://jcenter.bintray.com" }
         google()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.0'
     }
 }
 
-apply plugin: 'catkin'
-
 allprojects {
-    group 'com.github.Application-UI-UX.android_apps'
-    version = project.catkin.pkg.version
     repositories {
+        mavenCentral()
+        maven { url "https://jitpack.io" }
         maven {
-            allowInsecureProtocol = true
             url 'https://repo1.maven.org/maven2'
-        }
-        maven {
             url = "https://maven.pkg.github.com/Application-UI-UX"
         }
         mavenLocal()
-        mavenCentral()
+        maven { url = "https://repo.maven.apache.org/maven2" }
+        maven { url = "https://jcenter.bintray.com" }
         google()
+    }
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << '-Xlint:-options'
     }
 }
 
 subprojects {
-    apply plugin: 'ros-android'
-//    apply plugin: 'com.android.application'
+    apply plugin: 'java'
+    apply plugin: 'maven-publish'
+    apply plugin: "idea"
 
-    afterEvaluate { project ->
-        android {
-            packagingOptions {
-                /* https://github.com/rosjava/android_core/issues/194 */
-                exclude 'META-INF/LICENSE.txt'
-                exclude 'META-INF/NOTICE.txt'
-            }
-            flavorDimensions 'default'
+    sourceCompatibility = 1.6
+    targetCompatibility = 1.6
+
+    repositories {
+        maven {
+            url "https://repository.springsource.com/maven/bundles/release"
+        }
+        maven {
+            url "https://repository.springsource.com/maven/bundles/external"
         }
     }
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+dependencies {
+    implementation 'com.github.Application-UI-UX:rosjava_build_tools:0.4.0'
+    implementation 'com.github.Application-UI-UX:genjava:0.4.0'
 }
